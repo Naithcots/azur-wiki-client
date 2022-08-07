@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
-// import SkillDesc from "./SkillDesc";
+import { BsChevronDoubleDown } from "react-icons/bs";
 
-const ActiveShip = ({ ship }) => {
+const ShipGeneral = ({ ship }) => {
   const [animationStart, setAnimationStart] = useState(false);
   const [skinLoaded, setSkinLoaded] = useState(false);
   const totalAnimationDuration = 500;
-  //   console.log(ship);
+
   let stars = "";
   for (let i = 1; i <= ship.stars; i++) {
     stars += "★";
   }
-
-  console.log(animationStart);
 
   useEffect(() => {
     setSkinLoaded(false);
@@ -20,49 +18,39 @@ const ActiveShip = ({ ship }) => {
 
     const timeout = setTimeout(() => {
       setAnimationStart(false);
-    //   setSkinLoaded(true);
+      //   setSkinLoaded(true);
     }, totalAnimationDuration);
 
     return () => clearTimeout(timeout);
   }, [ship]);
 
   return (
-    <>
-      <StyledActiveShip animate={animationStart}>
+    <Container>
+      <StyledShipGeneral animate={animationStart}>
         <Info>
-          <Code
-            animate={animationStart}
-            // onAnimationEnd={() => setAnimationStart(false)}
-          >
-            {ship.names.en}
-          </Code>
+          <Code animate={animationStart}>{ship.names.en}</Code>
           <Hull animate={animationStart}>{ship.hullType}</Hull>
         </Info>
-        {/* <SkillsContainer>
-          {ship.skills.map((skill, idx) => (
-            <Skill key={idx}>
-              <SkillName>{skill.names.en}</SkillName>
-              <SkillDesc>{skill.description}</SkillDesc>
-              <SkillIcon src={skill.icon} />
-            </Skill>
-          ))}
-        </SkillsContainer> */}
         <TopRightInfo>
           <Nationality>{ship.nationality}</Nationality>
           <Stars>{stars}</Stars>
         </TopRightInfo>
         <Rarity>{ship.rarity}</Rarity>
-      </StyledActiveShip>
+      </StyledShipGeneral>
       <Skin
         src={ship.skins[0].image}
         alt="skin"
         loaded={skinLoaded}
         onLoad={() => setSkinLoaded(true)}
       />
-    </>
+      <ScrollIndicator>
+        <ArrowDown />
+        <IndicatorText>Skills</IndicatorText>
+      </ScrollIndicator>
+    </Container>
   );
 };
-export default ActiveShip;
+export default ShipGeneral;
 
 const containerAnim = keyframes`
     from {
@@ -76,9 +64,20 @@ const containerAnim = keyframes`
     }
 `;
 
-const StyledActiveShip = styled.div`
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  position: relative;
+`;
+
+const StyledShipGeneral = styled.div`
   width: 100%;
   min-height: 65vh;
+  max-height: 80vh;
 
   padding: 1em 1.25em;
 
@@ -214,7 +213,7 @@ const Skin = styled.img`
 
   position: absolute;
   bottom: 0;
-  right: 7vw;
+  right: 0;
 
   user-select: none;
 
@@ -231,29 +230,40 @@ const Skin = styled.img`
     `}
 `;
 
-// const SkillsContainer = styled.div``;
+const ScrollIndicatorAnim = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  40%, 60% {
+    transform: translateY(2vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
 
-// const Skill = styled.div`
-//   position: relative;
-// `;
+`;
 
-// const SkillName = styled.p`
-//   margin-bottom: 0;
+const ScrollIndicator = styled.div`
+  position: absolute;
+  bottom: 6vh;
+  left: 12vw;
 
-//   font-size: 1.15rem;
-//   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
 
-//   z-index: 3;
-// `;
+  animation: ${ScrollIndicatorAnim} 8000ms infinite;
+`;
 
-// const SkillIcon = styled.img`
-//   max-width: 80px;
+const IndicatorText = styled.p`
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 2px;
 
-//   position: absolute;
-//   top: 0;
-//   right: 0;
+  font-weight: 600;
+`;
 
-//   z-index: 1;
-
-//   opacity: 0.15;
-// `;
+const ArrowDown = styled(BsChevronDoubleDown)`
+  /* position: absolute; */
+  font-size: 3rem;
+`;

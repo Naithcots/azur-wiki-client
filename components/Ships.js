@@ -1,55 +1,14 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import ActiveShip from "./ActiveShip";
+import ShipGeneral from "./ShipGeneral";
 import { useEffect, useState } from "react";
-
-const GET_SHIPS_BY_NATIONALITY = gql`
-  query getShipsByNat($nat: Nationality!) {
-    shipsByNationality(nationality: $nat) {
-      id
-      names {
-        en
-        code
-      }
-      nationality
-      thumbnail
-      class
-      rarity
-      stars
-      hullType
-      stats {
-        baseStats {
-          health
-          torpedo
-          luck
-          reload
-        }
-      }
-      skills {
-        names {
-          en
-        }
-        icon
-        description
-      }
-      gallery {
-        description
-        url
-      }
-      skins {
-        name
-        image
-      }
-      obtainedFrom {
-        obtainedFrom
-      }
-    }
-  }
-`;
+import shipsByNationality from "../queries/ShipsByNationality";
+import ShipPanel from "./ShipPanel";
+import useScrollWheel from "../hooks/useScrollWheel";
 
 const Ships = ({ nation, setNation }) => {
-  const { error, loading, data } = useQuery(GET_SHIPS_BY_NATIONALITY, {
+  const { error, loading, data } = useQuery(shipsByNationality, {
     variables: { nat: nation },
   });
   // console.log(data, error);
@@ -57,6 +16,7 @@ const Ships = ({ nation, setNation }) => {
   const [ships, setShips] = useState(null);
   const [ship, setShip] = useState(null);
   const [index, setIndex] = useState(0);
+  const { transformValue } = useScrollWheel();
   // console.log("Active Ship: ", ship);
 
   const prevShip = () => {
@@ -83,43 +43,56 @@ const Ships = ({ nation, setNation }) => {
   }, [index]);
 
   if (loading) return <StyledShips>Loading...</StyledShips>;
+
   return (
-    <StyledShips>
+    <>
+      <StyledShips transformValue={transformValue}>
+        {ship && <ShipGeneral ship={ship} />}
+        {ship && <ShipPanel ship={ship} />}
+      </StyledShips>
+
       <LeftArrow onClick={prevShip} />
-      {ship && <ActiveShip ship={ship} />}
       <RightArrow onClick={nextShip} />
       <BackButton onClick={() => setNation(null)}>BACK</BackButton>
-    </StyledShips>
+    </>
   );
 };
 export default Ships;
 
 const StyledShips = styled.div`
-  height: 100vh;
-  margin: 0 1.5em;
+  margin: 0 7vw;
 
-  display: grid;
-  place-items: center;
-  grid-template-columns: 5vw 1fr 5vw;
-  gap: 2em;
+  transform: ${({ transformValue }) => `translateY(${transformValue}px)`};
+  transition: transform 250ms;
 `;
 
 const LeftArrow = styled(FaChevronLeft)`
   font-size: 2.5rem;
   cursor: pointer;
+
+  position: fixed;
+  top: 50%;
+  left: 2vw;
 `;
 
 const RightArrow = styled(FaChevronRight)`
   font-size: 2.5rem;
   cursor: pointer;
+
+  position: fixed;
+  top: 50%;
+  right: 2vw;
 `;
 
 const BackButton = styled.button`
   padding: 1em 2em;
 
   position: absolute;
-  bottom: 6vh;
-  left: 9vw;
+  /* bottom: 6vh; */
+  /* left: 9vw; */
+
+  top: 2.25vh;
+  right: 10vw;
 
   border-radius: 0 0.5em 0.5em;
 
