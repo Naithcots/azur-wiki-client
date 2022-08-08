@@ -40,6 +40,7 @@ const StyledNations = styled.div`
   place-items: center;
 
   display: ${(props) => (props.show ? "grid" : "none")};
+  /* Hide component after animation ends */
 `;
 
 const Container = styled.div`

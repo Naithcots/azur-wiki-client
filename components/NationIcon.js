@@ -1,9 +1,19 @@
+import { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 
 const NationIcon = ({ data, nation, setNation, animationDuration }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <NationContainer show={!nation} duration={animationDuration} key={data.id}>
-      <Image src={data.icon} onClick={() => setNation(data.search)} />
+      <Image
+        src={data.icon}
+        width={150}
+        height={200}
+        loaded={imageLoaded}
+        onLoad={() => setImageLoaded(true)}
+        onClick={() => setNation(data.search)}
+      />
       <Name>{data.name}</Name>
       <Prefix>{data.prefix}</Prefix>
     </NationContainer>
@@ -119,8 +129,8 @@ const ImageAnim = keyframes`
 `;
 
 const Image = styled.img`
-  width: 100%;
   max-width: 150px;
+  height: auto;
 
   display: block;
   margin: 0 auto;

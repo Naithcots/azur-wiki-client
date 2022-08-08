@@ -17,10 +17,6 @@ const Hamburger = ({ navOpen, setNavOpen }) => {
 export default Hamburger;
 
 const StyledHamburger = styled.div`
-  position: fixed;
-  top: 2em;
-  right: 3em;
-
   width: 48px;
   height: 42px;
 

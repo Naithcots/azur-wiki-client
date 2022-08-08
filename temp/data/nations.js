@@ -5,7 +5,7 @@ const nations = [
     search: "eagle_union",
     prefix: "USS",
     belligerent: "United States of America",
-    icon: "/Us_1.png",
+    icon: "/webp/Us_1.webp",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const nations = [
     search: "royal_navy",
     prefix: "HMS",
     belligerent: "United Kingdom",
-    icon: "/En_1.png",
+    icon: "/webp/En_1.webp",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const nations = [
     search: "sakura_empire",
     prefix: "IJN",
     belligerent: "Empire of Japan",
-    icon: "/Jp_1.png",
+    icon: "/webp/Jp_1.webp",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const nations = [
     search: "iron_blood",
     prefix: "KMS",
     belligerent: "German Empire",
-    icon: "/De_1.png",
+    icon: "/webp/De_1.webp",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const nations = [
     search: "dragon_empery",
     prefix: "ROC",
     belligerent: "Republic of China",
-    icon: "/Cn_1.png",
+    icon: "/webp/Cn_1.webp",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const nations = [
     search: "northern_parliament",
     prefix: "SN",
     belligerent: "Union of Soviet Socialist Republics (USSR)",
-    icon: "/Sn_1.png",
+    icon: "/webp/Sn_1.webp",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const nations = [
     search: "iris_libre",
     prefix: "FFNF",
     belligerent: "Free France",
-    icon: "/Ff_1.png",
+    icon: "/webp/Ff_1.webp",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const nations = [
     search: "vichya_dominion",
     prefix: "MNF",
     belligerent: "Vichy France",
-    icon: "/Vf_1.png",
+    icon: "/webp/Vf_1.webp",
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ const nations = [
     search: "sardegna_empire",
     prefix: "RN",
     belligerent: "Kingdom of Italy",
-    icon: "/Rn_1.png",
+    icon: "/webp/Rn_1.webp",
   },
 ];
 

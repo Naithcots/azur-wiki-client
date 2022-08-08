@@ -1,55 +1,38 @@
-import { useQuery } from "@apollo/client";
 import styled, { keyframes } from "styled-components";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { CgSpinnerTwoAlt } from "react-icons/cg";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaSkullCrossbones,
+} from "react-icons/fa";
 import ShipGeneral from "./ShipGeneral";
-import { useEffect, useState } from "react";
-import shipsByNationality from "../queries/ShipsByNationality";
 import ShipPanel from "./ShipPanel";
 import useScrollWheel from "../hooks/useScrollWheel";
-import { CgSpinnerTwoAlt } from "react-icons/cg";
+import useShips from "../hooks/useShips";
 
 const Ships = ({ nation, setNation }) => {
-  const { error, loading, data } = useQuery(shipsByNationality, {
-    variables: { nat: nation },
-  });
-  // console.log(data, error);
-
-  const [ships, setShips] = useState(null);
-  const [ship, setShip] = useState(null);
-  const [index, setIndex] = useState(0);
+  const { loading, error, ship, prevShip, nextShip } = useShips(nation);
   const [transformValue, setPanelInput] = useScrollWheel();
-  // console.log("Active Ship: ", ship);
 
-  const prevShip = () => {
-    if (index === 0) return;
-    setIndex(index - 1);
-  };
+  if (error)
+    return (
+      <Container>
+        <Box>
+          <ErrorIcon />
+          <Text error>An error ocurred. Please try again later..</Text>
+        </Box>
+      </Container>
+    );
 
-  const nextShip = () => {
-    if (index === ships.length - 1) return;
-    setIndex(index + 1);
-  };
-
-  useEffect(() => {
-    // data && setShips(data.shipsByNationality.slice(0, 5));
-    data && setShips(data.shipsByNationality);
-  }, [data]);
-
-  useEffect(() => {
-    ships && setShip(ships[index]);
-  }, [ships]);
-
-  useEffect(() => {
-    ships && setShip(ships[index]);
-  }, [index]);
-
-  if (loading) return (
-  <Container>
-    <Box>
-        <Spinner />
-        <LoadingText>Loading...</LoadingText>
-      </Box>
-    </Container>);
+  if (loading)
+    return (
+      <Container>
+        <Box>
+          <Spinner />
+          <Text>Loading...</Text>
+        </Box>
+      </Container>
+    );
 
   return (
     <>
@@ -60,7 +43,7 @@ const Ships = ({ nation, setNation }) => {
 
       <LeftArrow onClick={prevShip} />
       <RightArrow onClick={nextShip} />
-      <BackButton onClick={() => setNation(null)}>BACK</BackButton>
+      <ReturnButton onClick={() => setNation(null)}>RETURN</ReturnButton>
     </>
   );
 };
@@ -78,16 +61,35 @@ const Container = styled.div`
 
 const Box = styled.div`
   text-align: center;
-`
+`;
 
 const SpinnerAnim = keyframes`
-  0% {
+  from {
     transform: rotateZ(0);
   }
-  100% {
+  to {
     transform: rotateZ(360deg);
   }
-`
+`;
+
+const ErrorIconAnim = keyframes`
+  from {
+    transform: rotateY(0);
+  }
+
+  25% {
+    transform: rotateY(30deg);
+  }
+
+  75% {
+    transform: rotateY(-30deg);
+  }
+
+  to {
+    transform: rotateY(0);
+  }
+
+`;
 
 const Spinner = styled(CgSpinnerTwoAlt)`
   font-size: 4rem;
@@ -95,15 +97,24 @@ const Spinner = styled(CgSpinnerTwoAlt)`
   animation: ${SpinnerAnim} 3000ms linear infinite;
 `;
 
-const LoadingText = styled.p`
+const ErrorIcon = styled(FaSkullCrossbones)`
+  font-size: 4rem;
+
+  animation: ${ErrorIconAnim} 3000ms infinite;
+`;
+
+const Text = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
-`
+
+  color: ${({ error }) => error && "red"};
+`;
 
 const StyledShips = styled.div`
   margin: 0 7vw;
 
-  transform: ${({ transformValue }) => `translateY(${transformValue}px)`};
+  transform: ${({ transformValue }) =>
+    `translate3d(0, ${transformValue}px, 0)`};
   transition: transform 250ms;
 `;
 
@@ -125,12 +136,10 @@ const RightArrow = styled(FaChevronRight)`
   right: 2vw;
 `;
 
-const BackButton = styled.button`
+const ReturnButton = styled.button`
   padding: 1em 2em;
 
   position: absolute;
-  /* bottom: 6vh; */
-  /* left: 9vw; */
 
   top: 2.25vh;
   right: 10vw;
@@ -145,6 +154,8 @@ const BackButton = styled.button`
   background-color: #111;
 
   cursor: pointer;
+
+  z-index: 925;
 
   transition: transform 100ms;
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
 import Hamburger from "./Hamburger";
@@ -7,7 +8,14 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <Logo src="/azurlane_logo.svg" alt="logo" />
+      <Image
+        src="/azurlane_logo.svg"
+        alt="logo"
+        width={150}
+        height={75}
+        style={{ userSelect: "none" }}
+        priority
+      />
       <Hamburger navOpen={navOpen} setNavOpen={setNavOpen} />
     </StyledHeader>
   );
@@ -15,16 +23,16 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.header`
-  margin: 1em;
+  padding: 1em 1.5em;
+  width: 100%;
 
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 
-  z-index: 900;
-`;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-const Logo = styled.img`
-  max-width: 175px;
-  user-select: none;
+  z-index: 900;
 `;

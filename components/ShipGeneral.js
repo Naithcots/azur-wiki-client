@@ -55,12 +55,10 @@ export default ShipGeneral;
 const containerAnim = keyframes`
     from {
         transform: rotateX(90deg);
-        /* opacity: 0.5; */
     }
 
     to {
         transform: rotateX(0);
-        /* opacity: 1; */
     }
 `;
 
@@ -91,14 +89,11 @@ const StyledShipGeneral = styled.div`
 
   user-select: none;
 
-  /* animation: ${containerAnim} 500ms; */
-
   ${({ animate }) =>
-    animate
-      ? css`
-          animation: ${containerAnim} 650ms forwards;
-        `
-      : null}
+    animate &&
+    css`
+      animation: ${containerAnim} 650ms forwards;
+    `}
 `;
 
 const Info = styled.div`
@@ -123,11 +118,10 @@ const Code = styled.h1`
   letter-spacing: 1px;
 
   ${({ animate }) =>
-    animate
-      ? css`
-          animation: ${codeAnim} 350ms forwards;
-        `
-      : null}
+    animate &&
+    css`
+      animation: ${codeAnim} 350ms forwards;
+    `}
 `;
 
 const hullAnim = keyframes`
@@ -150,11 +144,10 @@ const Hull = styled.h3`
   font-size: 1.25rem;
 
   ${({ animate }) =>
-    animate
-      ? css`
-          animation: ${hullAnim} 350ms forwards;
-        `
-      : null}
+    animate &&
+    css`
+      animation: ${hullAnim} 350ms forwards;
+    `}
 `;
 
 const TopRightInfo = styled.div`
@@ -212,13 +205,10 @@ const Skin = styled.img`
   max-height: 70vh;
 
   position: absolute;
-  bottom: 0;
+  bottom: 1vh;
   right: 0;
 
   user-select: none;
-
-  /* opacity: 0;
-  transform: translateX(100px); */
 
   visibility: hidden;
   z-index: 10;

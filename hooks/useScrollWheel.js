@@ -9,12 +9,9 @@ const useScrollWheel = () => {
     const totalHeight = document.body.scrollHeight;
 
     if (e.deltaY < 0) {
-      console.log("Scroll up");
-      console.log(transformValue);
       if (transformValue === 0) return;
       setTransformValue((transformValue += viewPortHeight));
     } else if (e.deltaY > 0) {
-      console.log("Scroll down");
       if (-transformValue >= totalHeight - viewPortHeight) return;
       setTransformValue((transformValue -= viewPortHeight));
     }
@@ -29,7 +26,6 @@ const useScrollWheel = () => {
       setTransformValue((transformValue += viewPortHeight));
     } else if (input === "next") {
       if (-transformValue >= totalHeight - viewPortHeight) return;
-      console.log(transformValue, viewPortHeight);
       setTransformValue((transformValue -= viewPortHeight));
     }
   };
