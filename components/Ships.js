@@ -1,11 +1,12 @@
 import { useQuery } from "@apollo/client";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ShipGeneral from "./ShipGeneral";
 import { useEffect, useState } from "react";
 import shipsByNationality from "../queries/ShipsByNationality";
 import ShipPanel from "./ShipPanel";
 import useScrollWheel from "../hooks/useScrollWheel";
+import { CgSpinnerTwoAlt } from "react-icons/cg";
 
 const Ships = ({ nation, setNation }) => {
   const { error, loading, data } = useQuery(shipsByNationality, {
@@ -42,7 +43,13 @@ const Ships = ({ nation, setNation }) => {
     ships && setShip(ships[index]);
   }, [index]);
 
-  if (loading) return <StyledShips>Loading...</StyledShips>;
+  if (loading) return (
+  <Container>
+    <Box>
+        <Spinner />
+        <LoadingText>Loading...</LoadingText>
+      </Box>
+    </Container>);
 
   return (
     <>
@@ -58,6 +65,40 @@ const Ships = ({ nation, setNation }) => {
   );
 };
 export default Ships;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  position: relative;
+`;
+
+const Box = styled.div`
+  text-align: center;
+`
+
+const SpinnerAnim = keyframes`
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+`
+
+const Spinner = styled(CgSpinnerTwoAlt)`
+  font-size: 4rem;
+
+  animation: ${SpinnerAnim} 3000ms linear infinite;
+`;
+
+const LoadingText = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+`
 
 const StyledShips = styled.div`
   margin: 0 7vw;
