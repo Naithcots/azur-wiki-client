@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { BsChevronDoubleDown } from "react-icons/bs";
 
-const ShipGeneral = ({ ship }) => {
+const ShipGeneral = ({ ship, setPanelInput }) => {
   const [animationStart, setAnimationStart] = useState(false);
   const [skinLoaded, setSkinLoaded] = useState(false);
   const totalAnimationDuration = 500;
@@ -43,7 +43,7 @@ const ShipGeneral = ({ ship }) => {
         loaded={skinLoaded}
         onLoad={() => setSkinLoaded(true)}
       />
-      <ScrollIndicator>
+      <ScrollIndicator onClick={() => setPanelInput("next")}>
         <ArrowDown />
         <IndicatorText>Skills</IndicatorText>
       </ScrollIndicator>
@@ -223,6 +223,8 @@ const Skin = styled.img`
   visibility: hidden;
   z-index: 10;
 
+  filter: drop-shadow(2px 1px 0 #444) drop-shadow(-1px -1px 0 #444);
+
   ${({ loaded }) =>
     loaded &&
     css`
@@ -251,6 +253,8 @@ const ScrollIndicator = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75em;
+
+  cursor: pointer;
 
   animation: ${ScrollIndicatorAnim} 8000ms infinite;
 `;

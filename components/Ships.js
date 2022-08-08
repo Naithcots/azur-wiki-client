@@ -16,7 +16,7 @@ const Ships = ({ nation, setNation }) => {
   const [ships, setShips] = useState(null);
   const [ship, setShip] = useState(null);
   const [index, setIndex] = useState(0);
-  const { transformValue } = useScrollWheel();
+  const [transformValue, setPanelInput] = useScrollWheel();
   // console.log("Active Ship: ", ship);
 
   const prevShip = () => {
@@ -47,7 +47,7 @@ const Ships = ({ nation, setNation }) => {
   return (
     <>
       <StyledShips transformValue={transformValue}>
-        {ship && <ShipGeneral ship={ship} />}
+        {ship && <ShipGeneral ship={ship} setPanelInput={setPanelInput} />}
         {ship && <ShipPanel ship={ship} />}
       </StyledShips>
 
