@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
-import { BsChevronDoubleDown } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
+import { AiOutlineReload } from "react-icons/ai";
+import { GiClover, GiTorpedo } from "react-icons/gi";
+import Container from "../styles/shared/Container";
+import ShipPanel from "../styles/shared/ShipPanel";
+import ScrollIndicator from "../styles/shared/ScrollIndicator";
 
 const ShipGeneral = ({ ship, setPanelInput }) => {
   const [animationStart, setAnimationStart] = useState(false);
   const [skinLoaded, setSkinLoaded] = useState(false);
   const totalAnimationDuration = 500;
+
+  console.log(ship);
 
   let stars = "";
   for (let i = 1; i <= ship.stars; i++) {
@@ -18,7 +25,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
 
     const timeout = setTimeout(() => {
       setAnimationStart(false);
-      //   setSkinLoaded(true);
+      setSkinLoaded(true);
     }, totalAnimationDuration);
 
     return () => clearTimeout(timeout);
@@ -31,28 +38,58 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
           <Code animate={animationStart}>{ship.names.en}</Code>
           <Hull animate={animationStart}>{ship.hullType}</Hull>
         </Info>
+
+        {/* Stats */}
+        <StatsContainer>
+          {/* <StatsTitle>Base</StatsTitle> */}
+          <Stats>
+            <Stat>
+              <HeartIcon />
+              <StatText>{ship.stats.baseStats.health}</StatText>
+            </Stat>
+            <Stat>
+              <LuckIcon />
+              <StatText>{ship.stats.baseStats.luck}</StatText>
+            </Stat>
+            <Stat>
+              <ReloadIcon />
+              <StatText>{ship.stats.baseStats.reload}</StatText>
+            </Stat>
+            <Stat>
+              <TorpedoIcon />
+              <StatText>{ship.stats.baseStats.torpedo}</StatText>
+            </Stat>
+          </Stats>
+        </StatsContainer>
+        {/* Stats */}
+
+        {ship.obtainedFrom.obtainedFrom && (
+          <ObtainedFrom>
+            <ObtainedHeading>How to obtain?</ObtainedHeading>
+            <ObtainedText>{ship.obtainedFrom.obtainedFrom}</ObtainedText>
+          </ObtainedFrom>
+        )}
+
         <TopRightInfo>
           <Nationality>{ship.nationality}</Nationality>
           <Stars>{stars}</Stars>
         </TopRightInfo>
         <Rarity>{ship.rarity}</Rarity>
       </StyledShipGeneral>
+
       <Skin
         src={ship.skins[0].image}
         alt="skin"
         loaded={skinLoaded}
         onLoad={() => setSkinLoaded(true)}
       />
-      <ScrollIndicator onClick={() => setPanelInput("next")}>
-        <ArrowDown />
-        <IndicatorText>Skills</IndicatorText>
-      </ScrollIndicator>
+      <ScrollIndicator text={"Skills"} onClick={() => setPanelInput("next")} />
     </Container>
   );
 };
 export default ShipGeneral;
 
-const containerAnim = keyframes`
+const panelAnim = keyframes`
     from {
         transform: rotateX(90deg);
     }
@@ -62,37 +99,11 @@ const containerAnim = keyframes`
     }
 `;
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: grid;
-  place-items: center;
-
-  position: relative;
-`;
-
-const StyledShipGeneral = styled.div`
-  width: 100%;
-  min-height: 65vh;
-  max-height: 80vh;
-
-  padding: 1em 1.25em;
-
-  position: relative;
-  box-sizing: border-box;
-
-  border-radius: 0.5em;
-
-  color: #fff;
-  background-color: #444;
-
-  user-select: none;
-
+const StyledShipGeneral = styled(ShipPanel)`
   ${({ animate }) =>
     animate &&
     css`
-      animation: ${containerAnim} 650ms forwards;
+      animation: ${panelAnim} 650ms forwards;
     `}
 `;
 
@@ -137,17 +148,72 @@ const hullAnim = keyframes`
 `;
 
 const Hull = styled.h3`
-  margin: 0.15em 0 0 0.25em;
+  margin: 0em 0 0.25em 0em;
 
   opacity: 0.85;
 
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 
   ${({ animate }) =>
     animate &&
     css`
       animation: ${hullAnim} 350ms forwards;
     `}
+`;
+
+const StatsContainer = styled.div`
+  margin: 1.25em 0;
+`;
+
+const Stats = styled.div`
+  display: flex;
+  gap: 1.5em;
+`;
+
+const StatsTitle = styled.h2``;
+
+const Stat = styled.div`
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-rows: 1fr 1fr;
+`;
+
+const StatText = styled.p`
+  margin: 0.25em 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
+
+const HeartIcon = styled(FaHeart)`
+  display: block;
+  font-size: 2rem;
+`;
+const LuckIcon = styled(GiClover)`
+  display: block;
+  font-size: 2rem;
+`;
+const ReloadIcon = styled(AiOutlineReload)`
+  display: block;
+  font-size: 2rem;
+`;
+const TorpedoIcon = styled(GiTorpedo)`
+  display: block;
+  font-size: 2rem;
+`;
+
+const ObtainedFrom = styled.div`
+  width: 40%;
+  margin: 1em 0;
+  line-height: normal;
+`;
+
+const ObtainedHeading = styled.h3`
+  margin: 0 0 0.25em 0;
+`;
+
+const ObtainedText = styled.p`
+  margin: 0;
 `;
 
 const TopRightInfo = styled.div`
@@ -220,44 +286,4 @@ const Skin = styled.img`
     css`
       animation: ${skinAnim} 500ms forwards;
     `}
-`;
-
-const ScrollIndicatorAnim = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  40%, 60% {
-    transform: translateY(2vh);
-  }
-  100% {
-    transform: translateY(0);
-  }
-
-`;
-
-const ScrollIndicator = styled.div`
-  position: absolute;
-  bottom: 6vh;
-  left: 12vw;
-
-  display: flex;
-  align-items: center;
-  gap: 0.75em;
-
-  cursor: pointer;
-
-  animation: ${ScrollIndicatorAnim} 8000ms infinite;
-`;
-
-const IndicatorText = styled.p`
-  margin: 0;
-  font-size: 2rem;
-  letter-spacing: 2px;
-
-  font-weight: 600;
-`;
-
-const ArrowDown = styled(BsChevronDoubleDown)`
-  /* position: absolute; */
-  font-size: 3rem;
 `;

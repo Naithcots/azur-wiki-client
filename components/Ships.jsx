@@ -6,7 +6,8 @@ import {
   FaSkullCrossbones,
 } from "react-icons/fa";
 import ShipGeneral from "./ShipGeneral";
-import ShipPanel from "./ShipPanel";
+import ShipSkills from "./ShipSkills";
+import ShipSkins from "./ShipSkins";
 import useScrollWheel from "../hooks/useScrollWheel";
 import useShips from "../hooks/useShips";
 
@@ -38,7 +39,8 @@ const Ships = ({ nation, setNation }) => {
     <>
       <StyledShips transformValue={transformValue}>
         {ship && <ShipGeneral ship={ship} setPanelInput={setPanelInput} />}
-        {ship && <ShipPanel ship={ship} />}
+        {ship && <ShipSkills ship={ship} setPanelInput={setPanelInput} />}
+        {ship && <ShipSkins ship={ship} />}
       </StyledShips>
 
       <LeftArrow onClick={prevShip} />

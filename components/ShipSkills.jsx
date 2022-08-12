@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import Container from "../styles/shared/Container";
+import ScrollIndicator from "../styles/shared/ScrollIndicator";
 
-const ShipPanel = ({ ship }) => {
+const ShipSkills = ({ ship, setPanelInput }) => {
   return (
     <Container>
       <StyledShipPanel>
@@ -17,18 +19,11 @@ const ShipPanel = ({ ship }) => {
 
         <SkillText>SKILLS</SkillText>
       </StyledShipPanel>
+      <ScrollIndicator text={"Gallery"} onClick={() => setPanelInput("next")} />
     </Container>
   );
 };
-export default ShipPanel;
-
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: grid;
-  place-items: center;
-`;
+export default ShipSkills;
 
 const StyledShipPanel = styled.div`
   width: 100%;
