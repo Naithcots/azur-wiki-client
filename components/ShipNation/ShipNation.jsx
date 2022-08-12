@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import nations from "../temp/data/nations";
+import nations from "../../temp/data/nations";
 import NationIcon from "./NationIcon";
+import { Container, StyledNations } from "./styles";
 
 const ShipNation = ({ nation, setNation }) => {
   const [display, setDisplay] = useState(true);
@@ -32,24 +32,3 @@ const ShipNation = ({ nation, setNation }) => {
   );
 };
 export default ShipNation;
-
-const StyledNations = styled.div`
-  height: 100vh;
-  margin: 0 1em;
-  overflow: hidden;
-  place-items: center;
-
-  display: ${(props) => (props.show ? "grid" : "none")};
-  /* Hide component after animation ends */
-`;
-
-const Container = styled.div`
-  display: grid;
-
-  align-items: center;
-  justify-content: center;
-
-  grid-template-columns: repeat(6, 150px);
-  column-gap: 4em;
-  row-gap: 2em;
-`;

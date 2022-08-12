@@ -13,20 +13,20 @@ export default ScrollIndicator;
 
 const ScrollIndicatorAnim = keyframes`
   0% {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
   40%, 60% {
-    transform: translateY(2vh);
+    transform: translate(-50%, 2vh);
   }
   100% {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 `;
 
 const StyledScrollIndicator = styled.div`
   position: absolute;
-  bottom: 6vh;
-  left: 12vw;
+  bottom: 4.5vh;
+  left: 50%;
 
   display: flex;
   align-items: center;
@@ -35,6 +35,11 @@ const StyledScrollIndicator = styled.div`
   cursor: pointer;
 
   animation: ${ScrollIndicatorAnim} 8000ms infinite;
+
+  @media (min-width: 676px) {
+    bottom: 6vh;
+    left: 12vw;
+  }
 `;
 
 const IndicatorText = styled.p`

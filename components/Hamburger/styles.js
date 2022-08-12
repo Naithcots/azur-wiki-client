@@ -1,22 +1,6 @@
 import styled from "styled-components";
 
-const Hamburger = ({ navOpen, setNavOpen }) => {
-  return (
-    <StyledHamburger
-      open={navOpen}
-      onClick={() => {
-        navOpen ? setNavOpen(false) : setNavOpen(true);
-      }}
-    >
-      <Line />
-      <Line />
-      <Line />
-    </StyledHamburger>
-  );
-};
-export default Hamburger;
-
-const StyledHamburger = styled.div`
+export const StyledHamburger = styled.div`
   width: 48px;
   height: 42px;
 
@@ -44,7 +28,7 @@ const StyledHamburger = styled.div`
   }
 `;
 
-const Line = styled.div`
+export const Line = styled.div`
   width: 85%;
   height: 5px;
 

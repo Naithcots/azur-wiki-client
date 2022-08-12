@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ShipPanel = styled.div`
   width: 100%;
-  min-height: 65vh;
+  min-height: 70vh;
   max-height: 80vh;
 
   padding: 1em 2em;
