@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNations = styled.div`
-  /* height: 100vh; */
-  margin: 100px 2em 2em;
+  margin: 0 2em 1em;
   overflow: hidden;
   place-items: center;
 

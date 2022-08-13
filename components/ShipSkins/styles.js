@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const SkinsContainer = styled.div`
-  margin: 0.5em 0;
+  /* margin: 0.5em 0; */
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1em;
 
-  max-height: 65vh;
-  overflow-y: scroll;
+  /* max-height: 65vh; */
+  /* overflow-y: scroll; */
 
   @media (min-width: 676px) {
     max-height: 100%;
@@ -53,4 +53,13 @@ export const SkinImage = styled.img`
 export const SkinName = styled.p`
   text-align: center;
   font-weight: 600;
+`;
+
+export const SkinText = styled.span`
+  font-size: clamp(6rem, 10vw, 10rem);
+  opacity: 0.05;
+
+  position: absolute;
+  bottom: 0;
+  right: 2.5vw;
 `;

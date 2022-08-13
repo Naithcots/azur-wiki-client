@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHamburger = styled.div`
-  width: 48px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
 
   display: grid;
   place-items: center;
@@ -13,7 +13,7 @@ export const StyledHamburger = styled.div`
 
   & > div:nth-child(1) {
     transform: ${(props) =>
-      props.open ? "rotateZ(45deg) translate(10px, 10px)" : "rotate(0)"};
+      props.open ? "rotateZ(45deg) translate(8px, 8px)" : "rotate(0)"};
   }
 
   & > div:nth-child(2) {
@@ -24,7 +24,7 @@ export const StyledHamburger = styled.div`
 
   & > div:nth-child(3) {
     transform: ${(props) =>
-      props.open ? "rotateZ(-45deg) translate(10px, -10px)" : "rotate(0)"};
+      props.open ? "rotateZ(-45deg) translate(8px, -8px)" : "rotate(0)"};
   }
 `;
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Container from "../../styles/shared/Container";
+import MobileHeroContainer from "../../styles/shared/MobileHeroContainer";
 import ScrollIndicator from "../../styles/shared/ScrollIndicator";
 import {
   ObtainedText,
@@ -30,8 +31,9 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
   const [animationStart, setAnimationStart] = useState(false);
   const [skinLoaded, setSkinLoaded] = useState(false);
   const totalAnimationDuration = 500;
-  const isMobile = useMediaQuery({
-    query: "(max-width: 676px)",
+
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 876px)",
   });
 
   let stars = "";
@@ -50,6 +52,63 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
 
     return () => clearTimeout(timeout);
   }, [ship]);
+
+  if (!isDesktop)
+    return (
+      <MobileHeroContainer>
+        <StyledShipGeneral animate={animationStart}>
+          <Info>
+            <Code animate={animationStart}>{ship.names.en}</Code>
+            <Hull animate={animationStart}>{ship.hullType}</Hull>
+          </Info>
+
+          <StatsContainer>
+            {/* <StatsTitle>Base</StatsTitle> */}
+            <Stats>
+              <Stat>
+                <HeartIcon />
+                <StatText>{ship.stats.baseStats.health}</StatText>
+              </Stat>
+              <Stat>
+                <LuckIcon />
+                <StatText>{ship.stats.baseStats.luck}</StatText>
+              </Stat>
+              <Stat>
+                <ReloadIcon />
+                <StatText>{ship.stats.baseStats.reload}</StatText>
+              </Stat>
+              <Stat>
+                <TorpedoIcon />
+                <StatText>{ship.stats.baseStats.torpedo}</StatText>
+              </Stat>
+            </Stats>
+          </StatsContainer>
+
+          {ship.obtainedFrom.obtainedFrom && (
+            <ObtainedFrom>
+              <ObtainedHeading>How to obtain?</ObtainedHeading>
+              <ObtainedText>{ship.obtainedFrom.obtainedFrom}</ObtainedText>
+            </ObtainedFrom>
+          )}
+
+          {/* <TopRightInfo>
+            <Nationality>{ship.nationality}</Nationality>
+            <Stars>{stars}</Stars>
+          </TopRightInfo> */}
+          <Rarity>{ship.rarity}</Rarity>
+          <Thumbnail
+            src={ship.thumbnail}
+            alt="skin"
+            loaded={skinLoaded}
+            onLoad={() => setSkinLoaded(true)}
+          />
+        </StyledShipGeneral>
+        {/* <ScrollIndicator
+          text={"Skills"}
+          onClick={() => setPanelInput("next")}
+        /> */}
+      </MobileHeroContainer>
+    );
 
   return (
     <Container>
@@ -93,23 +152,13 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
           <Stars>{stars}</Stars>
         </TopRightInfo>
         <Rarity>{ship.rarity}</Rarity>
-        {isMobile && (
-          <Thumbnail
-            src={ship.thumbnail}
-            alt="skin"
-            loaded={skinLoaded}
-            onLoad={() => setSkinLoaded(true)}
-          />
-        )}
       </StyledShipGeneral>
-      {!isMobile && (
-        <Skin
-          src={ship.skins[0].image}
-          alt="skin"
-          loaded={skinLoaded}
-          onLoad={() => setSkinLoaded(true)}
-        />
-      )}
+      <Skin
+        src={ship.skins[0].image}
+        alt="skin"
+        loaded={skinLoaded}
+        onLoad={() => setSkinLoaded(true)}
+      />
       <ScrollIndicator text={"Skills"} onClick={() => setPanelInput("next")} />
     </Container>
   );

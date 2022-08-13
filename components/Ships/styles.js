@@ -57,16 +57,16 @@ export const Text = styled.p`
   color: ${({ error }) => error && "red"};
 `;
 
+export const MobileStyledShips = styled.div`
+  margin: 0.5em;
+`;
+
 export const StyledShips = styled.div`
-  margin: 0 3vw;
+  margin: 0 4.25em;
 
   transform: ${({ transformValue }) =>
     `translate3d(0, ${transformValue}px, 0)`};
   transition: transform 250ms;
-
-  @media (min-width: 676px) {
-    margin: 0 7vw;
-  }
 `;
 
 export const LeftArrow = styled(FaChevronLeft)`
@@ -97,18 +97,29 @@ export const RightArrow = styled(FaChevronRight)`
   }
 `;
 
+export const ReturnButtonAnim = keyframes`
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
 export const ReturnButton = styled.button`
-  padding: 1em 2em;
+  padding: 0.65em 1.5em;
 
   position: absolute;
 
-  top: 2vh;
-  right: 6em;
+  top: 0;
+  right: 20vw;
 
-  border-radius: 0 0.5em 0.5em;
+  border-radius: 0 0 0.5em 0.5em;
 
   /* font-size: 1.25rem; */
-  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-size: clamp(1.125rem, 4vw, 1.35rem);
   font-weight: 600;
 
   border: none;
@@ -124,4 +135,6 @@ export const ReturnButton = styled.button`
   &:hover {
     transform: scale(1.05);
   }
+
+  animation: ${ReturnButtonAnim} 500ms forwards;
 `;

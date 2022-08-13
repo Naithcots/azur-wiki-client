@@ -2,10 +2,8 @@ import styled from "styled-components";
 
 export const StyledShipPanel = styled.div`
   width: 100%;
-  min-height: 65vh;
-  max-height: 80vh;
 
-  padding: 1em 2em;
+  padding: 1.5em 1.25em;
 
   position: relative;
   box-sizing: border-box;
@@ -16,6 +14,13 @@ export const StyledShipPanel = styled.div`
   background-color: #444;
 
   user-select: none;
+
+  @media (min-width: 876px) {
+    min-height: 65vh;
+    max-height: 80vh;
+
+    padding: 1em 2em;
+  }
 `;
 
 export const Code = styled.h2`
@@ -24,13 +29,21 @@ export const Code = styled.h2`
 `;
 
 export const SkillsContainer = styled.div`
-  display: grid;
-  grid-template-columns: ${({ amount }) => `repeat(${amount}, 1fr)`};
   gap: 2em;
+
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 876px) {
+    /* display: grid; */
+    /* grid-template-columns: ${({ amount }) => `repeat(${amount}, 1fr)`}; */
+    flex-direction: row;
+  }
 `;
 
 export const Skill = styled.div`
   text-align: center;
+  flex: 1;
 `;
 
 export const SkillIcon = styled.img`
@@ -38,8 +51,12 @@ export const SkillIcon = styled.img`
 `;
 
 export const SkillName = styled.p`
+  margin: 0.35em 0;
+
   font-size: 1.25rem;
   font-weight: 700;
+
+  letter-spacing: 0.5px;
 `;
 
 export const SkillDesc = styled.p`

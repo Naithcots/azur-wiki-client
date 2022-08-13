@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Container from "../../styles/shared/Container";
 import ShipPanel from "../../styles/shared/ShipPanel";
 import SkinModal from "../SkinModal/SkinModal";
-import { Skin, SkinImage, SkinName, SkinsContainer } from "./styles";
+import { Skin, SkinImage, SkinName, SkinsContainer, SkinText } from "./styles";
 
 const ShipSkins = ({ ship }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -30,9 +30,16 @@ const ShipSkins = ({ ship }) => {
               </Skin>
             ))}
           </SkinsContainer>
+          <SkinText>SKINS</SkinText>
         </ShipPanel>
       </Container>
-      {modalOpen && <SkinModal src={modalImage} setModalOpen={setModalOpen} />}
+      {modalOpen && (
+        <SkinModal
+          src={modalImage}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+        />
+      )}
     </>
   );
 };

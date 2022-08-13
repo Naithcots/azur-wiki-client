@@ -24,6 +24,8 @@ export const StyledShipGeneral = styled(ShipPanel)`
 
 export const Info = styled.div`
   width: fit-content;
+  position: relative;
+  z-index: 10;
 `;
 
 export const codeAnim = keyframes`
@@ -40,7 +42,7 @@ export const codeAnim = keyframes`
 export const Code = styled.h1`
   margin: 0;
 
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   letter-spacing: 1px;
 
   ${({ animate }) =>
@@ -79,15 +81,15 @@ export const Hull = styled.h3`
 
 export const StatsContainer = styled.div`
   margin: 1.25em 0;
+  position: relative;
+  z-index: 10;
 `;
 
 export const Stats = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 2.5em;
+  gap: 1.65em;
 
-  @media (min-width: 676px) {
-    justify-content: left;
+  @media (min-width: 876px) {
     gap: 1.5em;
   }
 `;
@@ -127,6 +129,8 @@ export const TorpedoIcon = styled(GiTorpedo)`
 export const ObtainedFrom = styled.div`
   margin: 1em 0;
   line-height: normal;
+  position: relative;
+  z-index: 10;
 
   @media (min-width: 676px) {
     width: 40%;
@@ -191,17 +195,33 @@ export const ImageAnim = keyframes`
     }
 `;
 
+export const ThumbnailAnim = keyframes`
+    from {
+        visibility: visible;
+        opacity: 0;
+        transform: translateX(5px);
+    }
+
+    to {
+        visibility: visible;
+        opacity: 0.2;
+        transform: translateX(0);
+    }
+`;
+
 export const Thumbnail = styled.img`
   position: absolute;
   bottom: 0;
   right: 0;
 
-  z-index: 10;
+  max-height: 100%;
+
+  z-index: 5;
 
   ${({ loaded }) =>
     loaded &&
     css`
-      animation: ${ImageAnim} 500ms forwards;
+      animation: ${ThumbnailAnim} 500ms forwards;
     `}
 `;
 

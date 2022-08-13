@@ -40,6 +40,6 @@ const useScrollWheel = () => {
     setPanelInput(null);
   }, [panelInput]);
 
-  return [transformValue, setPanelInput];
+  return [transformValue, setTransformValue, setPanelInput];
 };
 export default useScrollWheel;

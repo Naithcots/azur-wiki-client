@@ -4,8 +4,10 @@ import styled from "styled-components";
 export const StyledSkinModal = styled.div`
   width: 100%;
   height: 100vh;
+  height: -moz-fill-available;
+  height: fill-available;
 
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 

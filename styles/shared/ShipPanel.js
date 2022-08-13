@@ -2,10 +2,8 @@ import styled from "styled-components";
 
 const ShipPanel = styled.div`
   width: 100%;
-  min-height: 70vh;
-  max-height: 80vh;
 
-  padding: 1em 2em;
+  padding: 1.25em;
 
   position: relative;
   box-sizing: border-box;
@@ -16,6 +14,11 @@ const ShipPanel = styled.div`
   background-color: #444;
 
   user-select: none;
+
+  @media (min-width: 876px) {
+    min-height: 70vh;
+    max-height: 80vh;
+  }
 `;
 
 export default ShipPanel;

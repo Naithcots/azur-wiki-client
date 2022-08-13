@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import useBodyOverflow from "../../hooks/useBodyOverflow";
 import ShipGeneral from "../ShipGeneral/ShipGeneral";
 import ShipSkills from "../ShipSkills/ShipSkills";
 import ShipSkins from "../ShipSkins/ShipSkins";
@@ -16,20 +14,16 @@ import {
   LeftArrow,
   RightArrow,
   ReturnButton,
+  MobileStyledShips,
 } from "./styles";
 
 const Ships = ({ nation, setNation }) => {
-  const { loading, error, ship, prevShip, nextShip } = useShips(nation);
-  const { setOverflow } = useBodyOverflow();
-  const [transformValue, setPanelInput] = useScrollWheel();
+  const [loading, error, ship, prevShip, nextShip] = useShips(nation);
+  const [transformValue, setTransformValue, setPanelInput] = useScrollWheel();
 
-  // const isDesktop = useMediaQuery({
-  //   query: "(min-width: 1024px)",
-  // });
-
-  useEffect(() => {
-    nation ? setOverflow("hidden") : setOverflow("visible");
-  }, [nation]);
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 876px)",
+  });
 
   if (error)
     return (
@@ -49,6 +43,19 @@ const Ships = ({ nation, setNation }) => {
           <Text>Loading...</Text>
         </Box>
       </Container>
+    );
+
+  if (!isDesktop)
+    return (
+      <>
+        <MobileStyledShips>
+          {ship && <ShipGeneral ship={ship} setPanelInput={setPanelInput} />}
+          {ship && <ShipSkills ship={ship} setPanelInput={setPanelInput} />}
+          {ship && <ShipSkins ship={ship} />}
+        </MobileStyledShips>
+
+        <ReturnButton onClick={() => setNation(null)}>RETURN</ReturnButton>
+      </>
     );
 
   return (

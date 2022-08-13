@@ -1,3 +1,4 @@
+import { useMediaQuery } from "react-responsive";
 import Container from "../../styles/shared/Container";
 import ScrollIndicator from "../../styles/shared/ScrollIndicator";
 import {
@@ -12,10 +13,14 @@ import {
 } from "./styles";
 
 const ShipSkills = ({ ship, setPanelInput }) => {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 876px)",
+  });
+
   return (
     <Container>
       <StyledShipPanel>
-        <Code>{ship.names.code}</Code>
+        {isDesktop && <Code>{ship.names.code}</Code>}
         <SkillsContainer amount={ship.skills.length}>
           {ship.skills.map((skill) => (
             <Skill key={skill.names.en}>
@@ -28,7 +33,12 @@ const ShipSkills = ({ ship, setPanelInput }) => {
 
         <SkillText>SKILLS</SkillText>
       </StyledShipPanel>
-      <ScrollIndicator text={"Gallery"} onClick={() => setPanelInput("next")} />
+      {isDesktop && (
+        <ScrollIndicator
+          text={"Gallery"}
+          onClick={() => setPanelInput("next")}
+        />
+      )}
     </Container>
   );
 };
