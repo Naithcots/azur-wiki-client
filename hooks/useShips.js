@@ -47,6 +47,17 @@ const useShips = (nation) => {
     checkSwipe();
   };
 
+  const keyEvent = (e) => {
+    switch (e.key) {
+      case "ArrowLeft":
+        prevShip();
+        break;
+      case "ArrowRight":
+        nextShip();
+        break;
+    }
+  };
+
   useEffect(() => {
     // data && setShips(data.shipsByNationality.slice(0, 5));
     data && setShips(data.shipsByNationality);
@@ -57,12 +68,16 @@ const useShips = (nation) => {
   }, [ships]);
 
   useEffect(() => {
-    document.addEventListener("touchstart", touchStart);
-    document.addEventListener("touchend", touchEnd);
+    if (ship) {
+      document.addEventListener("touchstart", touchStart);
+      document.addEventListener("touchend", touchEnd);
+      document.addEventListener("keydown", keyEvent);
+    }
 
     return () => {
       document.removeEventListener("touchstart", touchStart);
       document.removeEventListener("touchend", touchEnd);
+      document.removeEventListener("keydown", keyEvent);
     };
   }, [ship]);
 

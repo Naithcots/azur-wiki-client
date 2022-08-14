@@ -16,9 +16,3 @@ export const StyledHeader = styled.header`
     left: 0;
   }
 `;
-
-export const ImageContainer = styled.div`
-  width: 120px;
-  height: 55px;
-  position: relative;
-`;

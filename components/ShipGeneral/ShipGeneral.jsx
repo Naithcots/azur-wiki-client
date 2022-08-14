@@ -47,7 +47,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
 
     const timeout = setTimeout(() => {
       setAnimationStart(false);
-      setSkinLoaded(true);
+      // setSkinLoaded(true);
     }, totalAnimationDuration);
 
     return () => clearTimeout(timeout);
@@ -55,59 +55,61 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
 
   if (!isDesktop)
     return (
-      <MobileHeroContainer>
-        <StyledShipGeneral animate={animationStart}>
-          <Info>
-            <Code animate={animationStart}>{ship.names.en}</Code>
-            <Hull animate={animationStart}>{ship.hullType}</Hull>
-          </Info>
+      // <MobileHeroContainer>
+      <StyledShipGeneral animate={animationStart}>
+        <Info>
+          <Code animate={animationStart}>{ship.names.en}</Code>
+          <Hull animate={animationStart}>{ship.hullType}</Hull>
+        </Info>
 
-          <StatsContainer>
-            {/* <StatsTitle>Base</StatsTitle> */}
-            <Stats>
-              <Stat>
-                <HeartIcon />
-                <StatText>{ship.stats.baseStats.health}</StatText>
-              </Stat>
-              <Stat>
-                <LuckIcon />
-                <StatText>{ship.stats.baseStats.luck}</StatText>
-              </Stat>
-              <Stat>
-                <ReloadIcon />
-                <StatText>{ship.stats.baseStats.reload}</StatText>
-              </Stat>
-              <Stat>
-                <TorpedoIcon />
-                <StatText>{ship.stats.baseStats.torpedo}</StatText>
-              </Stat>
-            </Stats>
-          </StatsContainer>
+        <StatsContainer>
+          {/* <StatsTitle>Base</StatsTitle> */}
+          <Stats>
+            <Stat>
+              <HeartIcon />
+              <StatText>{ship.stats.baseStats.health}</StatText>
+            </Stat>
+            <Stat>
+              <LuckIcon />
+              <StatText>{ship.stats.baseStats.luck}</StatText>
+            </Stat>
+            <Stat>
+              <ReloadIcon />
+              <StatText>{ship.stats.baseStats.reload}</StatText>
+            </Stat>
+            <Stat>
+              <TorpedoIcon />
+              <StatText>{ship.stats.baseStats.torpedo}</StatText>
+            </Stat>
+          </Stats>
+        </StatsContainer>
 
-          {ship.obtainedFrom.obtainedFrom && (
-            <ObtainedFrom>
-              <ObtainedHeading>How to obtain?</ObtainedHeading>
-              <ObtainedText>{ship.obtainedFrom.obtainedFrom}</ObtainedText>
-            </ObtainedFrom>
-          )}
+        {ship.obtainedFrom.obtainedFrom && (
+          <ObtainedFrom>
+            <ObtainedHeading>How to obtain?</ObtainedHeading>
+            <ObtainedText>{ship.obtainedFrom.obtainedFrom}</ObtainedText>
+          </ObtainedFrom>
+        )}
 
-          {/* <TopRightInfo>
+        {/* <TopRightInfo>
             <Nationality>{ship.nationality}</Nationality>
             <Stars>{stars}</Stars>
           </TopRightInfo> */}
-          <Rarity>{ship.rarity}</Rarity>
-          <Thumbnail
-            src={ship.thumbnail}
-            alt="skin"
-            loaded={skinLoaded}
-            onLoad={() => setSkinLoaded(true)}
-          />
-        </StyledShipGeneral>
-        {/* <ScrollIndicator
-          text={"Skills"}
-          onClick={() => setPanelInput("next")}
-        /> */}
-      </MobileHeroContainer>
+        <Rarity>{ship.rarity}</Rarity>
+        <Thumbnail
+          src={ship.thumbnail}
+          alt="thumbnail"
+          width={256}
+          height={256}
+          loaded={skinLoaded}
+          onLoad={() => setSkinLoaded(true)}
+        />
+      </StyledShipGeneral>
+      // <ScrollIndicator
+      //   text={"Skills"}
+      //   onClick={() => setPanelInput("next")}
+      // />
+      // </MobileHeroContainer>
     );
 
   return (

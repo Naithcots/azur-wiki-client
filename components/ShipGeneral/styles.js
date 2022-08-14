@@ -214,7 +214,9 @@ export const Thumbnail = styled.img`
   bottom: 0;
   right: 0;
 
+  width: auto;
   max-height: 100%;
+  opacity: 0;
 
   z-index: 5;
 
@@ -233,6 +235,7 @@ export const Skin = styled.img`
   bottom: 1vh;
   right: 0vw;
 
+  opacity: 0;
   user-select: none;
 
   visibility: hidden;
