@@ -46,7 +46,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
 
     const timeout = setTimeout(() => {
       setAnimationStart(false);
-      setSkinLoaded(true);
+      // setSkinLoaded(true);
     }, totalAnimationDuration);
 
     return () => clearTimeout(timeout);
@@ -94,6 +94,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
             <Nationality>{ship.nationality}</Nationality>
             <Stars>{stars}</Stars>
           </TopRightInfo> */}
+
           <Rarity>{ship.rarity}</Rarity>
           <Thumbnail
             src={ship.thumbnail}
@@ -106,6 +107,20 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
           text={"Skills"}
           onClick={() => setPanelInput("next")}
         /> */}
+
+        <Rarity>{ship.rarity}</Rarity>
+        <Thumbnail
+          src={ship.thumbnail}
+          alt="thumbnail"
+          width={256}
+          height={256}
+          loaded={skinLoaded}
+          onLoad={() => setSkinLoaded(true)}
+        />
+        {/* <ScrollIndicator
+         text={"Skills"}
+         onClick={() => setPanelInput("next")}
+       /> */}
       </Container>
     );
 

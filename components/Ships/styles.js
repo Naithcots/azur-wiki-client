@@ -58,7 +58,8 @@ export const Text = styled.p`
 `;
 
 export const MobileStyledShips = styled.div`
-  margin: 0.5em;
+  padding: 0.5em;
+  width: 100%;
 `;
 
 export const StyledShips = styled.div`

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Hamburger from "../Hamburger/Hamburger";
-import { StyledHeader, ImageContainer } from "./styles";
+import { StyledHeader } from "./styles";
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState(false);

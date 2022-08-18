@@ -17,6 +17,10 @@ export const StyledSkinModal = styled.div`
   z-index: 999;
 
   backdrop-filter: brightness(0.2) blur(0.1em);
+
+  @media (min-width: 876px) {
+    height: 100vh;
+  }
 `;
 
 export const ImageContainer = styled.div`
