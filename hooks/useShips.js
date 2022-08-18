@@ -33,7 +33,7 @@ const useShips = (nation) => {
 
   const checkSwipe = () => {
     const swipeWidth = Math.abs(startX - endX);
-    if (swipeWidth < 0.5 * pageX) return;
+    if (swipeWidth < 0.35 * pageX) return;
     if (startX > endX) nextShip();
     else prevShip();
   };

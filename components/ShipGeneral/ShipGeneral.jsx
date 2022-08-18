@@ -28,6 +28,7 @@ import {
 
 const ShipGeneral = ({ ship, setPanelInput }) => {
   const [animationStart, setAnimationStart] = useState(false);
+  const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
   const [skinLoaded, setSkinLoaded] = useState(false);
   const totalAnimationDuration = 500;
 
@@ -41,12 +42,14 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
   }
 
   useEffect(() => {
-    setSkinLoaded(false);
     setAnimationStart(true);
+    setSkinLoaded(false);
+    setThumbnailLoaded(false);
 
     const timeout = setTimeout(() => {
       setAnimationStart(false);
-      // setSkinLoaded(true);
+      setSkinLoaded(true);
+      setThumbnailLoaded(true);
     }, totalAnimationDuration);
 
     return () => clearTimeout(timeout);
@@ -89,24 +92,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
               <ObtainedText>{ship.obtainedFrom.obtainedFrom}</ObtainedText>
             </ObtainedFrom>
           )}
-
-          {/* <TopRightInfo>
-            <Nationality>{ship.nationality}</Nationality>
-            <Stars>{stars}</Stars>
-          </TopRightInfo> */}
-
-          <Rarity>{ship.rarity}</Rarity>
-          <Thumbnail
-            src={ship.thumbnail}
-            alt="skin"
-            loaded={skinLoaded}
-            onLoad={() => setSkinLoaded(true)}
-          />
         </StyledShipGeneral>
-        {/* <ScrollIndicator
-          text={"Skills"}
-          onClick={() => setPanelInput("next")}
-        /> */}
 
         <Rarity>{ship.rarity}</Rarity>
         <Thumbnail
@@ -114,13 +100,9 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
           alt="thumbnail"
           width={256}
           height={256}
-          loaded={skinLoaded}
-          onLoad={() => setSkinLoaded(true)}
+          loaded={thumbnailLoaded}
+          onLoad={() => setThumbnailLoaded(true)}
         />
-        {/* <ScrollIndicator
-         text={"Skills"}
-         onClick={() => setPanelInput("next")}
-       /> */}
       </Container>
     );
 

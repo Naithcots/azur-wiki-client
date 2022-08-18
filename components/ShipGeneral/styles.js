@@ -223,7 +223,7 @@ export const Thumbnail = styled.img`
   ${({ loaded }) =>
     loaded &&
     css`
-      animation: ${ThumbnailAnim} 350ms forwards;
+      animation: ${ThumbnailAnim} 500ms forwards;
     `}
 `;
 
