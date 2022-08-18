@@ -9,7 +9,7 @@ const NationIcon = ({ data, nation, setNation, animationDuration }) => {
       <Image
         src={data.icon}
         width={150}
-        height={200}
+        height={120}
         loaded={imageLoaded}
         onLoad={() => setImageLoaded(true)}
         onClick={() => setNation(data.search)}
@@ -195,7 +195,7 @@ const NationContainer = styled.div`
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1210px) {
     &:nth-child(7),
     &:nth-child(8),
     &:nth-child(9) {
@@ -250,10 +250,8 @@ const ImageAnim = keyframes`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: auto;
-
-  max-width: 120px;
+  width: auto;
+  height: 100px;
 
   display: block;
   margin: 0 auto;
@@ -261,6 +259,10 @@ const Image = styled.img`
   animation: ${ImageAnim} 1350ms forwards;
 
   cursor: pointer;
+
+  @media (min-width: 576px) {
+    height: 120px;
+  }
 `;
 
 const Name = styled.p`

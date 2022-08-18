@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  padding: 0.75em 1em 0.5em;
+  padding: 0.75em 1em 0em;
   width: 100%;
 
   display: flex;
@@ -15,10 +15,4 @@ export const StyledHeader = styled.header`
     top: 0;
     left: 0;
   }
-`;
-
-export const ImageContainer = styled.div`
-  width: 120px;
-  height: 55px;
-  position: relative;
 `;

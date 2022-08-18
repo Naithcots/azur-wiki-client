@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Container from "../../styles/shared/Container";
-import MobileHeroContainer from "../../styles/shared/MobileHeroContainer";
 import ScrollIndicator from "../../styles/shared/ScrollIndicator";
 import {
   ObtainedText,
@@ -55,7 +54,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
 
   if (!isDesktop)
     return (
-      <MobileHeroContainer>
+      <Container>
         <StyledShipGeneral animate={animationStart}>
           <Info>
             <Code animate={animationStart}>{ship.names.en}</Code>
@@ -107,7 +106,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
           text={"Skills"}
           onClick={() => setPanelInput("next")}
         /> */}
-      </MobileHeroContainer>
+      </Container>
     );
 
   return (

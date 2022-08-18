@@ -8,15 +8,14 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <ImageContainer>
-        <Image
-          src="/azurlane_logo.svg"
-          alt="logo"
-          layout="fill"
-          style={{ userSelect: "none" }}
-          priority
-        />
-      </ImageContainer>
+      <Image
+        src="/azurlane_logo.svg"
+        alt="logo"
+        width={120}
+        height={55}
+        style={{ userSelect: "none" }}
+        priority
+      />
       <Hamburger navOpen={navOpen} setNavOpen={setNavOpen} />
     </StyledHeader>
   );

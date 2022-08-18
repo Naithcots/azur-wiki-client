@@ -72,11 +72,13 @@ export const Hull = styled.h3`
 
   font-size: clamp(1.15rem, 3vw, 1.5rem);
 
-  ${({ animate }) =>
-    animate &&
-    css`
-      animation: ${hullAnim} 350ms forwards;
-    `}
+  @media (min-width: 876px) {
+    ${({ animate }) =>
+      animate &&
+      css`
+        animation: ${hullAnim} 350ms forwards;
+      `}
+  }
 `;
 
 export const StatsContainer = styled.div`
@@ -111,19 +113,19 @@ export const StatText = styled.p`
 
 export const HeartIcon = styled(FaHeart)`
   display: block;
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 export const LuckIcon = styled(GiClover)`
   display: block;
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 export const ReloadIcon = styled(AiOutlineReload)`
   display: block;
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 export const TorpedoIcon = styled(GiTorpedo)`
   display: block;
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
 export const ObtainedFrom = styled.div`
@@ -197,13 +199,11 @@ export const ImageAnim = keyframes`
 
 export const ThumbnailAnim = keyframes`
     from {
-        visibility: visible;
         opacity: 0;
-        transform: translateX(5px);
+        transform: translateX(3px);
     }
 
     to {
-        visibility: visible;
         opacity: 0.2;
         transform: translateX(0);
     }
@@ -214,6 +214,8 @@ export const Thumbnail = styled.img`
   bottom: 0;
   right: 0;
 
+  opacity: 0;
+  width: auto;
   max-height: 100%;
 
   z-index: 5;
@@ -221,7 +223,7 @@ export const Thumbnail = styled.img`
   ${({ loaded }) =>
     loaded &&
     css`
-      animation: ${ThumbnailAnim} 500ms forwards;
+      animation: ${ThumbnailAnim} 350ms forwards;
     `}
 `;
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNations = styled.div`
-  margin: 0 2em 1em;
+  margin: 1.5em 2em;
   overflow: hidden;
   place-items: center;
 
@@ -16,27 +16,26 @@ export const StyledNations = styled.div`
 
 export const Container = styled.div`
   display: grid;
-
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: repeat(2, minmax(80px, 125px));
-  column-gap: 4em;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2em;
   row-gap: 2em;
 
   @media (min-width: 576px) {
-    grid-template-columns: repeat(3, 120px);
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 676px) {
-    grid-template-columns: repeat(4, minmax(95px, 125px));
+  @media (min-width: 720px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (min-width: 876px) {
-    grid-template-columns: repeat(5, minmax(100px, 120px));
+    grid-template-columns: repeat(5, 1fr);
   }
 
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(6, minmax(100px, 150px));
+  @media (min-width: 1210px) {
+    grid-template-columns: repeat(6, 1fr);
   }
 `;
