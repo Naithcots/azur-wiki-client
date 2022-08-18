@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  z-index: 900;
+  z-index: 950;
 
   @media (min-width: 876px) {
     position: absolute;

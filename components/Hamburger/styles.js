@@ -7,9 +7,17 @@ export const StyledHamburger = styled.div`
   display: grid;
   place-items: center;
 
+  position: relative;
+
   overflow: hidden;
 
   cursor: pointer;
+
+  z-index: 980;
+
+  & > div {
+    background-color: ${(props) => (props.open ? "#fff" : "#000")};
+  }
 
   & > div:nth-child(1) {
     transform: ${(props) =>
@@ -34,7 +42,7 @@ export const Line = styled.div`
 
   border-radius: 1em;
 
-  background-color: #000;
+  /* background-color: #000; */
 
   transition: transform 150ms, opacity 250ms;
 `;
