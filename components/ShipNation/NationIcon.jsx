@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
+import useNation from "../../hooks/useNation";
 
-const NationIcon = ({ data, nation, setNation, animationDuration }) => {
+const NationIcon = ({ data, animationDuration }) => {
+  const { nation, setNation } = useNation();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (

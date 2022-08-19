@@ -1,6 +1,8 @@
 import GlobalStyle from "../styles/GlobalStyle";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { NationProvider } from "../context/NationContext";
 import { BodyOverflowProvider } from "../context/BodyOverflowContext";
+import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
   const client = new ApolloClient({
@@ -11,12 +13,16 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <BodyOverflowProvider>
-        <GlobalStyle />
-        <ApolloProvider client={client}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </BodyOverflowProvider>
+      <NationProvider>
+        <BodyOverflowProvider>
+          <GlobalStyle />
+          <ApolloProvider client={client}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ApolloProvider>
+        </BodyOverflowProvider>
+      </NationProvider>
     </>
   );
 }

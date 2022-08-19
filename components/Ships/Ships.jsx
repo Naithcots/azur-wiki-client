@@ -1,4 +1,5 @@
 import { useMediaQuery } from "react-responsive";
+import useNation from "../../hooks/useNation";
 import ShipGeneral from "../ShipGeneral/ShipGeneral";
 import ShipSkills from "../ShipSkills/ShipSkills";
 import ShipSkins from "../ShipSkins/ShipSkins";
@@ -6,18 +7,21 @@ import useScrollWheel from "../../hooks/useScrollWheel";
 import useShips from "../../hooks/useShips";
 import Container from "../../styles/shared/Container";
 import {
-  Box,
   Spinner,
-  Text,
   ErrorIcon,
-  StyledShips,
   LeftArrow,
   RightArrow,
-  ReturnButton,
-  MobileStyledShips,
+  // ReturnButton,
 } from "./styles";
+import {
+  StyledShips,
+  MobileStyledShips,
+  Box,
+  Text,
+} from "../../styles/shared/Ship";
 
-const Ships = ({ nation, setNation }) => {
+const Ships = () => {
+  const { nation } = useNation();
   const [loading, error, ship, prevShip, nextShip] = useShips(nation);
   const [transformValue, setTransformValue, setPanelInput] = useScrollWheel();
 
@@ -54,7 +58,7 @@ const Ships = ({ nation, setNation }) => {
           {ship && <ShipSkins ship={ship} />}
         </MobileStyledShips>
 
-        <ReturnButton onClick={() => setNation(null)}>RETURN</ReturnButton>
+        {/* <ReturnButton onClick={() => setNation(null)}>RETURN</ReturnButton> */}
       </>
     );
 
@@ -68,7 +72,7 @@ const Ships = ({ nation, setNation }) => {
 
       <LeftArrow onClick={prevShip} />
       <RightArrow onClick={nextShip} />
-      <ReturnButton onClick={() => setNation(null)}>RETURN</ReturnButton>
+      {/* <ReturnButton onClick={() => setNation(null)}>RETURN</ReturnButton> */}
     </>
   );
 };

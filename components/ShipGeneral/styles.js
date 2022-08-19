@@ -4,7 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { AiOutlineReload } from "react-icons/ai";
 import { GiClover, GiTorpedo } from "react-icons/gi";
 
-export const panelAnim = keyframes`
+const panelAnim = keyframes`
     from {
         transform: rotateX(90deg);
     }
@@ -28,7 +28,7 @@ export const Info = styled.div`
   z-index: 10;
 `;
 
-export const codeAnim = keyframes`
+const codeAnim = keyframes`
     from {
         opacity: 0;
         transform: translateX(-50px);
@@ -52,7 +52,7 @@ export const Code = styled.h1`
     `}
 `;
 
-export const hullAnim = keyframes`
+const hullAnim = keyframes`
     from {
         opacity: 0;
         transform: translateX(200px);
@@ -183,7 +183,7 @@ export const Rarity = styled.p`
   opacity: 0.1;
 `;
 
-export const ImageAnim = keyframes`
+const ImageAnim = keyframes`
     from {
         visibility: visible;
         opacity: 0;
@@ -197,7 +197,7 @@ export const ImageAnim = keyframes`
     }
 `;
 
-export const ThumbnailAnim = keyframes`
+const ThumbnailAnim = keyframes`
     from {
         opacity: 0;
         transform: translateX(3px);

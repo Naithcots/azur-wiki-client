@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import useNation from "../../hooks/useNation";
 import nations from "../../temp/data/nations";
 import NationIcon from "./NationIcon";
 import { Container, StyledNations } from "./styles";
 
-const ShipNation = ({ nation, setNation }) => {
+const ShipNation = () => {
+  const { nation } = useNation();
   const [display, setDisplay] = useState(true);
   const animationDuration = 350;
 
@@ -21,8 +23,6 @@ const ShipNation = ({ nation, setNation }) => {
         {nations.map((data) => (
           <NationIcon
             data={data}
-            nation={nation}
-            setNation={setNation}
             animationDuration={animationDuration}
             key={data.id}
           />

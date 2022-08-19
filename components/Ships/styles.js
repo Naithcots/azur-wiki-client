@@ -6,11 +6,7 @@ import {
   FaSkullCrossbones,
 } from "react-icons/fa";
 
-export const Box = styled.div`
-  text-align: center;
-`;
-
-export const SpinnerAnim = keyframes`
+const SpinnerAnim = keyframes`
   from {
     transform: rotateZ(0);
   }
@@ -19,7 +15,7 @@ export const SpinnerAnim = keyframes`
   }
 `;
 
-export const ErrorIconAnim = keyframes`
+const ErrorIconAnim = keyframes`
   from {
     transform: rotateY(0);
   }
@@ -50,26 +46,6 @@ export const ErrorIcon = styled(FaSkullCrossbones)`
   animation: ${ErrorIconAnim} 3000ms infinite;
 `;
 
-export const Text = styled.p`
-  font-size: 1.5rem;
-  font-weight: 600;
-
-  color: ${({ error }) => error && "red"};
-`;
-
-export const MobileStyledShips = styled.div`
-  padding: 0.5em;
-  width: 100%;
-`;
-
-export const StyledShips = styled.div`
-  margin: 0 4.25em;
-
-  transform: ${({ transformValue }) =>
-    `translate3d(0, ${transformValue}px, 0)`};
-  transition: transform 250ms;
-`;
-
 export const LeftArrow = styled(FaChevronLeft)`
   font-size: 2.5rem;
   cursor: pointer;
@@ -98,7 +74,7 @@ export const RightArrow = styled(FaChevronRight)`
   }
 `;
 
-export const ReturnButtonAnim = keyframes`
+const ReturnButtonAnim = keyframes`
   from {
     transform: translateY(-50px);
     opacity: 0;
@@ -129,7 +105,7 @@ export const ReturnButton = styled.button`
 
   cursor: pointer;
 
-  z-index: 925;
+  z-index: 955;
 
   transition: transform 100ms;
 
