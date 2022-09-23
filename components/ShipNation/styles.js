@@ -27,12 +27,12 @@ export const Container = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 720px) {
+  /* @media (min-width: 720px) {
     grid-template-columns: repeat(4, 1fr);
-  }
+  } */
 
   @media (min-width: 876px) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (min-width: 1210px) {

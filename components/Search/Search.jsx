@@ -2,7 +2,18 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import GET_SHIPS_BY_KEYWORD from "../../queries/ShipsByKeyword";
 import Link from "next/link";
-import {SearchContainer, Input, ResultsContainer, Spinner, Result, Thumbnail, Code} from "./styles";
+import {
+  StyledSearch,
+  SearchContainer,
+  InputContainer,
+  Label,
+  Input,
+  ResultsContainer,
+  Spinner,
+  Result,
+  Thumbnail,
+  Code,
+} from "./styles";
 
 const Search = ({ setNavOpen }) => {
   const [keyword, setKeyword] = useState("");
@@ -13,9 +24,16 @@ const Search = ({ setNavOpen }) => {
   });
 
   return (
-    <>
+    <StyledSearch>
       <SearchContainer>
-        <Input type="text" onKeyUp={(e) => setKeyword(e.target.value)}></Input>
+        <InputContainer>
+          <Input
+            type="text"
+            placeholder=" "
+            onKeyUp={(e) => setKeyword(e.target.value)}
+          ></Input>
+          <Label>Search</Label>
+        </InputContainer>
       </SearchContainer>
 
       <ResultsContainer>
@@ -32,7 +50,7 @@ const Search = ({ setNavOpen }) => {
             </Link>
           ))}
       </ResultsContainer>
-    </>
+    </StyledSearch>
   );
 };
 export default Search;

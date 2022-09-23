@@ -12,7 +12,7 @@ import {
   StyledShipPanel,
 } from "./styles";
 
-const ShipSkills = ({ ship, setPanelInput }) => {
+const ShipSkills = ({ ship, next }) => {
   const isDesktop = useMediaQuery({
     query: "(min-width: 876px)",
   });
@@ -33,12 +33,7 @@ const ShipSkills = ({ ship, setPanelInput }) => {
 
         <SkillText>SKILLS</SkillText>
       </StyledShipPanel>
-      {isDesktop && (
-        <ScrollIndicator
-          text={"Gallery"}
-          onClick={() => setPanelInput("next")}
-        />
-      )}
+      {isDesktop && <ScrollIndicator text={"Gallery"} onClick={next} />}
     </Container>
   );
 };

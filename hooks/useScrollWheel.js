@@ -1,45 +1,55 @@
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import useBodyOverflow from "./useBodyOverflow";
 
 const useScrollWheel = () => {
-  const [transformValue, setTransformValue] = useState(0);
-  const [panelInput, setPanelInput] = useState(null);
+  const [value, setValue] = useState(0);
+  const { setOverflow } = useBodyOverflow();
 
   const handleWheel = (e) => {
-    const viewPortHeight = window.innerHeight;
-    const totalHeight = document.body.scrollHeight;
-
-    if (e.deltaY < 0) {
-      if (transformValue === 0) return;
-      setTransformValue((transformValue += viewPortHeight));
-    } else if (e.deltaY > 0) {
-      if (-transformValue >= totalHeight - viewPortHeight) return;
-      setTransformValue((transformValue -= viewPortHeight));
-    }
+    if (e.deltaY < 0) prev();
+    else if (e.deltaY > 0) next();
   };
 
-  const handlePanel = (input) => {
+  const prev = () => {
+    const viewPortHeight = window.innerHeight;
+    if (value === 0) return;
+    setValue((value -= viewPortHeight));
+  };
+
+  const next = () => {
     const viewPortHeight = window.innerHeight;
     const totalHeight = document.body.scrollHeight;
+    if (value >= totalHeight - viewPortHeight) return;
+    setValue((value += viewPortHeight));
+  };
 
-    if (input === "prev") {
-      if (transformValue === 0) return;
-      setTransformValue((transformValue += viewPortHeight));
-    } else if (input === "next") {
-      if (-transformValue >= totalHeight - viewPortHeight) return;
-      setTransformValue((transformValue -= viewPortHeight));
-    }
+  const reset = () => {
+    setValue(0);
   };
 
   useEffect(() => {
     window.addEventListener("wheel", handleWheel);
     return () => removeEventListener("wheel", handleWheel);
-  }, [transformValue]);
+  }, [value]);
+
+  // Reset value and set body overflow when window is resized
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 876px)",
+  });
 
   useEffect(() => {
-    handlePanel(panelInput);
-    setPanelInput(null);
-  }, [panelInput]);
+    if (isDesktop) {
+      window.scrollTo(0, 0);
+      reset();
+      setOverflow("hidden");
+    } else {
+      window.scrollTo(0, 0);
+      reset();
+      setOverflow("visible");
+    }
+  }, [isDesktop]);
 
-  return [transformValue, setTransformValue, setPanelInput];
+  return { transformValue: value, prev, next, reset };
 };
 export default useScrollWheel;

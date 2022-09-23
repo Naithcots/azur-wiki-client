@@ -3,7 +3,28 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
-  * { box-sizing: border-box}
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #bababa;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #bababa;
+    border-radius: 10px;
+  }
+
+  * {box-sizing: border-box;}
 
 html {
   line-height: 1.15; /* 1 */

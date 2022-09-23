@@ -1,6 +1,12 @@
 import styled, { keyframes } from "styled-components";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 
+export const StyledSearch = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const SearchContainer = styled.div`
   position: relative;
   padding: 1.25em 1.5em;
@@ -8,19 +14,46 @@ export const SearchContainer = styled.div`
   color: #fff;
 `;
 
+export const InputContainer = styled.div`
+  position: relative;
+`;
+
+export const Label = styled.label`
+  padding: 0 0.25em;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.75em;
+  z-index: 100;
+
+  color: #999;
+  background-color: #000;
+
+  transition: transform 200ms;
+`;
+
 export const Input = styled.input`
   width: 65%;
 
-  padding: 0.35em 0.5em;
+  padding: 0.75em 0.5em;
 
   color: #fff;
   background: none;
   border: 2px solid #fff;
   border-radius: 0.25em;
   outline: none;
+
+  &:not(:placeholder-shown) ~ ${Label}, &:focus ~ ${Label} {
+    transform: translateY(-165%);
+  }
 `;
 
 export const ResultsContainer = styled.div`
+  padding: 0.5em;
+  height: 100%;
+  overflow-y: auto;
+
   @media (min-width: 876px) {
     margin: 0 1em;
 
@@ -34,7 +67,6 @@ export const Result = styled.div`
   width: 100%;
   height: 70px;
 
-  margin: 0.5em 0;
   padding: 0.25em 0;
 
   display: flex;
