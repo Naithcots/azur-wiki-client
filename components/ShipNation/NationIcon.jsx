@@ -136,64 +136,57 @@ const NationContainer = styled.div`
       `}
   }
 
-  @media (min-width: 876px) {
-    &:nth-child(-n + 5) {
-      ${({ show, duration }) =>
-        show
-          ? css`
-              animation: ${openAnimationUpper} ${duration}ms;
-            `
-          : css`
-              animation: ${closeAnimationUpper} ${duration}ms;
-            `}
-    }
-
-    &:nth-last-child(-n + 4) {
-      ${({ show, duration }) =>
-        show
-          ? css`
-              animation: ${openAnimationLower} ${duration}ms;
-            `
-          : css`
-              animation: ${closeAnimationLower} ${duration}ms;
-            `}
-    }
-  }
-
   @media (min-width: 576px) {
     &:nth-child(-n + 3) {
       ${({ show, duration }) =>
-        show
-          ? css`
-              animation: ${openAnimationUpper} ${duration}ms;
-            `
-          : css`
-              animation: ${closeAnimationUpper} ${duration}ms;
-            `}
+        !show &&
+        css`
+          animation: ${closeAnimationUpper} ${duration}ms;
+        `}
     }
 
     &:nth-child(4),
     &:nth-child(5),
     &:nth-child(6) {
       ${({ show, duration }) =>
-        show
-          ? css`
-              animation: ${openOpacityAnimation} ${duration}ms;
-            `
-          : css`
-              animation: ${closeOpacityAnimation} ${duration}ms;
-            `}
+        !show &&
+        css`
+          animation: ${closeOpacityAnimation} ${duration}ms;
+        `}
     }
 
     &:nth-last-child(-n + 3) {
       ${({ show, duration }) =>
-        show
-          ? css`
-              animation: ${openAnimationLower} ${duration}ms;
-            `
-          : css`
-              animation: ${closeAnimationLower} ${duration}ms;
-            `}
+        !show &&
+        css`
+          animation: ${closeAnimationLower} ${duration}ms;
+        `}
+    }
+  }
+
+  /* @media (min-width: 720px) {
+
+  } */
+
+  @media (min-width: 876px) {
+    &:last-child {
+      grid-column: span 4;
+    }
+
+    &:nth-child(-n + 4) {
+      ${({ show, duration }) =>
+        !show &&
+        css`
+          animation: ${closeAnimationUpper} ${duration}ms;
+        `}
+    }
+
+    &:nth-last-child(-n + 5) {
+      ${({ show, duration }) =>
+        !show &&
+        css`
+          animation: ${closeAnimationLower} ${duration}ms;
+        `}
     }
   }
 

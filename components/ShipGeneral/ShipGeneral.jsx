@@ -26,7 +26,7 @@ import {
   Skin,
 } from "./styles";
 
-const ShipGeneral = ({ ship, setPanelInput }) => {
+const ShipGeneral = ({ ship, next }) => {
   const [animationStart, setAnimationStart] = useState(false);
   const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
   const [skinLoaded, setSkinLoaded] = useState(false);
@@ -155,7 +155,7 @@ const ShipGeneral = ({ ship, setPanelInput }) => {
         loaded={skinLoaded}
         onLoad={() => setSkinLoaded(true)}
       />
-      <ScrollIndicator text={"Skills"} onClick={() => setPanelInput("next")} />
+      <ScrollIndicator text={"Skills"} onClick={next} />
     </Container>
   );
 };

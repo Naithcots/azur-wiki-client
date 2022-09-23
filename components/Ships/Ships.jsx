@@ -23,7 +23,7 @@ import {
 const Ships = () => {
   const { nation } = useNation();
   const [loading, error, ship, prevShip, nextShip] = useShips(nation);
-  const [transformValue, setTransformValue, setPanelInput] = useScrollWheel();
+  const { transformValue, next } = useScrollWheel();
 
   const isDesktop = useMediaQuery({
     query: "(min-width: 876px)",
@@ -53,8 +53,8 @@ const Ships = () => {
     return (
       <>
         <MobileStyledShips>
-          {ship && <ShipGeneral ship={ship} setPanelInput={setPanelInput} />}
-          {ship && <ShipSkills ship={ship} setPanelInput={setPanelInput} />}
+          {ship && <ShipGeneral ship={ship} />}
+          {ship && <ShipSkills ship={ship} />}
           {ship && <ShipSkins ship={ship} />}
         </MobileStyledShips>
 
@@ -65,8 +65,8 @@ const Ships = () => {
   return (
     <>
       <StyledShips transformValue={transformValue}>
-        {ship && <ShipGeneral ship={ship} setPanelInput={setPanelInput} />}
-        {ship && <ShipSkills ship={ship} setPanelInput={setPanelInput} />}
+        {ship && <ShipGeneral ship={ship} next={next} />}
+        {ship && <ShipSkills ship={ship} next={next} />}
         {ship && <ShipSkins ship={ship} />}
       </StyledShips>
 

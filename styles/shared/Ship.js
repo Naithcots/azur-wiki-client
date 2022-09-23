@@ -20,6 +20,6 @@ export const StyledShips = styled.div`
   margin: 0 4.25em;
 
   transform: ${({ transformValue }) =>
-    `translate3d(0, ${transformValue}px, 0)`};
+    `translate3d(0, -${transformValue}px, 0)`};
   transition: transform 250ms;
 `;

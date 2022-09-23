@@ -1,32 +1,22 @@
-import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import ShipGeneral from "../../components/ShipGeneral/ShipGeneral";
 import ShipSkills from "../../components/ShipSkills/ShipSkills";
 import ShipSkins from "../../components/ShipSkins/ShipSkins";
-import useBodyOverflow from "../../hooks/useBodyOverflow";
 import useScrollWheel from "../../hooks/useScrollWheel";
 import { StyledShips, MobileStyledShips } from "../../styles/shared/Ship";
 
 const Ship = ({ ship }) => {
+  const { transformValue, next } = useScrollWheel();
   const isDesktop = useMediaQuery({
     query: "(min-width: 876px)",
   });
-  const [transformValue, setTransformValue, setPanelInput] = useScrollWheel();
-  const { setOverflow } = useBodyOverflow();
-
-  useEffect(() => {
-    if (isDesktop) {
-      window.scrollTo(0, 0);
-      setOverflow("hidden");
-    } else setOverflow("visible");
-  }, [isDesktop]);
 
   if (!isDesktop)
     return (
       <>
         <MobileStyledShips>
-          <ShipGeneral ship={ship} setPanelInput={setPanelInput} />
-          <ShipSkills ship={ship} setPanelInput={setPanelInput} />
+          <ShipGeneral ship={ship} next={next} />
+          <ShipSkills ship={ship} next={next} />
           <ShipSkins ship={ship} />
         </MobileStyledShips>
       </>
@@ -35,8 +25,8 @@ const Ship = ({ ship }) => {
   return (
     <>
       <StyledShips transformValue={transformValue}>
-        <ShipGeneral ship={ship} setPanelInput={setPanelInput} />
-        <ShipSkills ship={ship} setPanelInput={setPanelInput} />
+        <ShipGeneral ship={ship} next={next} />
+        <ShipSkills ship={ship} next={next} />
         <ShipSkins ship={ship} />
       </StyledShips>
     </>
