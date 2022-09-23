@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
   const client = new ApolloClient({
-    uri: "https://cryptic-shore-85492.herokuapp.com/graphql",
+    uri: "https://azur-wiki-api.onrender.com/graphql",
     // uri: "http://localhost:1337/graphql",
     cache: new InMemoryCache(),
   });
