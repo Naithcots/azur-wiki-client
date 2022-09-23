@@ -59,6 +59,7 @@ export const ResultsContainer = styled.div`
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    grid-template-rows: repeat(auto-fit, auto);
     gap: 1em;
   }
 `;
@@ -92,7 +93,7 @@ export const Result = styled.div`
 
   @media (min-width: 876px) {
     width: auto;
-    height: auto;
+    height: fit-content;
 
     border-bottom: none;
     background-color: #44444490;
